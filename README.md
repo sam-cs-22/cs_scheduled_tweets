@@ -35,22 +35,6 @@
   6. Wait for a couple of minutes, restart your server
   7. Disconnect & connect your twitter account, this time, you should be able to pull a auth information like username, picture, email e.t.c.
 
-### *Tweeter Auth call modifications*
-
-  From the training videos, connct to twitter link is writtein this format
-
-  ```ruby
-    <%=link_to "Connect your twitter account", '/auth/twitter', class: 'btn btn-primary'%>
-  ```
-
-  The above will throw and error as Oauth has the changed this for security reasons. This needs to be updated to the following:
-
-  ```ruby
-    <%=button_to "Connect your twitter account", "/auth/twitter", method: :post, class: "btn btn-primary"%>
-  ```
-
-  Updated this whereever it is neccessary as we use this button in tweets, twitter accounts page, schedule a tweets page
-
 ### *Recommended & Efficient way of handling job arguments*
 
   From the traning videos, when we are scheduling a job we are sending a tweet object. 
