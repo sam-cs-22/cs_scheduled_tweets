@@ -10,14 +10,14 @@
 
   When you authorise your twitter account for the first time and you do not have profile picture, during redirection, there will be a 500 internal error. This has been resolved. This is primarily because, code is running into the issue accessing a profile picture that is nil in the database
 
-    ```ruby
+  ```ruby
     <%-unless @twitter_account&.image.blank?%>
       <%= image_tag twitter_account.image, class: "rounded-circle" %>
     <%else%>
       <%=image_tag "http://placehold.jp/150x150.png", class: "rounded-circle"%>
     <%end%>
 
-    ```
+  ```
 
 ### *Twitter API permissions to get proper auth information & gain access more functions of API*
 
@@ -25,15 +25,15 @@
 
   By default you'll have Essential permissions and you'd need to gain elevated permissions. This is assuming tha that you already created a project & app to gain secrets
 
-    #### Proccess of getting elevated permissions
+  #### Proccess of getting elevated permissions
 
-    1. Firstly, we need to apply for elevated access
-    2. Go here: https://developer.twitter.com/en/portal/products/essential
-    3. Explain what is your purpose of using twitter API usage. You can give a standard explaination that we are using the API's for Oauth 2.0 authorisation purposes enabling social media features in the platform.
-    4. Please continue answer other questions for most of the which related to twitter data usage where we say No for most of the questions
-    5. Once we reach end of the steps, accept the agreements & click next. This should typically get all the permissions
-    6. Wait for a couple of minutes, restart your server
-    7. Disconnect & connect your twitter account, this time, you should be able to pull a auth information like username, picture, email e.t.c.
+  1. Firstly, we need to apply for elevated access
+  2. Go here: https://developer.twitter.com/en/portal/products/essential
+  3. Explain what is your purpose of using twitter API usage. You can give a standard explaination that we are using the API's for Oauth 2.0 authorisation purposes enabling social media features in the platform.
+  4. Please continue answer other questions for most of the which related to twitter data usage where we say No for most of the questions
+  5. Once we reach end of the steps, accept the agreements & click next. This should typically get all the permissions
+  6. Wait for a couple of minutes, restart your server
+  7. Disconnect & connect your twitter account, this time, you should be able to pull a auth information like username, picture, email e.t.c.
 
 ### *Tweeter Auth call modifications*
 
@@ -61,4 +61,3 @@
   ActiveJob::DeserializationError: Error while trying to deserialize arguments
   ```
   You'll get this error in sidekiq logs uif we are passing a tweet object that is not present in the system.
-  
