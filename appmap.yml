@@ -1,0 +1,6 @@
+---
+name: scheduled_tweets
+packages:
+- path: app/controllers
+- path: app/models
+- path: lib

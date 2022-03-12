@@ -1,3 +1,14 @@
+GIT
+  remote: https://github.com/applandinc/appmap-ruby.git
+  revision: c9ab7a4f6ace841b6056670297fef8185a5e767d
+  branch: master
+  specs:
+    appmap (0.72.5)
+      activesupport
+      method_source
+      rack
+      reverse_markdown
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -151,6 +162,26 @@ GEM
     omniauth-twitter (1.4.0)
       omniauth-oauth (~> 1.1)
       rack
+    opentelemetry-api (0.17.0)
+    opentelemetry-common (0.17.0)
+      opentelemetry-api (~> 0.17.0)
+    opentelemetry-exporter-zipkin (0.17.0)
+      opentelemetry-api (~> 0.17.0)
+      opentelemetry-common (~> 0.17.0)
+      opentelemetry-sdk (~> 0.17.0)
+    opentelemetry-instrumentation-base (0.17.0)
+      opentelemetry-api (~> 0.17.0)
+    opentelemetry-instrumentation-rack (0.17.0)
+      opentelemetry-api (~> 0.17.0)
+      opentelemetry-instrumentation-base (~> 0.17.0)
+    opentelemetry-instrumentation-rails (0.17.0)
+      opentelemetry-api (~> 0.17.0)
+      opentelemetry-instrumentation-base (~> 0.17.0)
+      opentelemetry-instrumentation-rack (~> 0.17.0)
+    opentelemetry-sdk (0.17.0)
+      opentelemetry-api (~> 0.17.0)
+      opentelemetry-common (~> 0.17.0)
+      opentelemetry-instrumentation-base (~> 0.17.0)
     pg (1.2.3)
     public_suffix (4.0.6)
     puma (5.3.1)
@@ -195,6 +226,8 @@ GEM
       ffi (~> 1.0)
     redis (4.2.5)
     regexp_parser (2.0.3)
+    reverse_markdown (2.1.1)
+      nokogiri
     rubyzip (2.3.0)
     sass-rails (6.0.0)
       sassc-rails (~> 2.1, >= 2.1.1)
@@ -272,6 +305,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  appmap!
   bcrypt (~> 3.1.7)
   bootsnap (>= 1.4.4)
   byebug
@@ -280,6 +314,9 @@ DEPENDENCIES
   listen (~> 3.3)
   omniauth-rails_csrf_protection (~> 1.0)
   omniauth-twitter (~> 1.4)
+  opentelemetry-exporter-zipkin (~> 0.17.0)
+  opentelemetry-instrumentation-rails (~> 0.17.0)
+  opentelemetry-sdk (~> 0.17.0)
   pg (~> 1.1)
   puma (~> 5.3)
   rails (~> 6.1.0)

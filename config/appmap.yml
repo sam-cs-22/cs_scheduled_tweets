@@ -1,0 +1,5 @@
+name: discourse
+packages:
+- path: app/controllers
+- path: app/models
+- path: lib

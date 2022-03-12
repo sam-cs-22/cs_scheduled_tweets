@@ -42,7 +42,12 @@ group :development do
   gem 'listen', '~> 3.3'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+  gem 'opentelemetry-sdk', '~> 0.17.0'
+  gem 'opentelemetry-instrumentation-rails', '~> 0.17.0'
+  gem 'opentelemetry-exporter-zipkin', '~> 0.17.0'
 end
+
+gem 'appmap', :groups => [:development, :test], github: 'applandinc/appmap-ruby', branch: 'master'
 
 group :test do
   # Adds support for Capybara system testing and selenium driver
@@ -59,3 +64,4 @@ gem "omniauth-twitter", "~> 1.4"
 gem "omniauth-rails_csrf_protection", "~> 1.0"
 gem "twitter", "~> 7.0"
 gem "sidekiq", "~> 6.1"
+
