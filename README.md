@@ -60,4 +60,5 @@
   ```ruby
   ActiveJob::DeserializationError: Error while trying to deserialize arguments
   ```
-  You'll get this error in sidekiq logs uif we are passing a tweet object that is not present in the system. 
+  You'll get this error in sidekiq logs uif we are passing a tweet object that is not present in the system.
+  
