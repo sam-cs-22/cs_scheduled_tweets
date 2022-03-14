@@ -6,7 +6,7 @@
 ## Issues Resolved outside training episodes
 
 
-### *500 internal error with tweet profile image*
+### *500 internal error with twitter profile image*
 
    When you authorize your Twitter account for the first time and do not have a profile picture, there will be a 500 internal error during redirection. This issue is primarily because the code is running into the issue accessing a profile picture that is nil in the database, please add the following to avoid this error
 
@@ -19,7 +19,7 @@
 
   ```
 
-### *Twitter API permissions to get proper auth information & gain access more functions of API*
+### *Twitter API permissions to get proper auth information & gain access to more functions of API*
 
    When you connect your tweeter account for the first time, you'll face a scenario where email, user name, and all the details in the auth response will be empty & tweeting will fail. This use case is due to Twitter permission issues.
 
@@ -39,7 +39,7 @@
 
   When we schedule a job from the training videos, we send a tweet object. 
 
-  Essentially, this format is undesirable as the object or arguments will be visible in the sidekiq system. There is a good chance that the objects will change between job creation & execution as per the schedule. Still, the job won't notice object changes as it will operate on its copy. This format may be desired behavior depending on the use case, but passing objects ids is always an excellent approach, giving the latest version. I have modified how the job will be receiving the object information & added additional logic to handle avoiding. 
+  Essentially, this format is undesirable as the object or arguments will be visible in the sidekiq system. There is a good chance that the objects will change between job creation & execution as per the schedule. Still, the job won't notice object changes as it will operate on its copy. This format may be desired behavior depending on the use case, but passing objects ids is always an excellent approach, giving the latest version of the object. I have modified how the job will be receiving the object information & added additional logic to handle avoiding the behaviour. 
   ```ruby
   TweetJob.set(wait_until: publish_at).perform_later(id)
   ```
@@ -58,6 +58,7 @@
     tweet.publish_to_twitter!
   end
   ```
+  We can also avoid the following error by above approach
   ```ruby
   ActiveJob::DeserializationError: Error while trying to deserialize arguments
   ```
