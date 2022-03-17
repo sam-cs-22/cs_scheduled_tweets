@@ -4,7 +4,6 @@ Rails.application.routes.draw do
   require "sidekiq/web"
   mount Sidekiq::Web => "/sidekiq"
   get "about", to: "about#index"
-
   get "password", to: "passwords#edit", as: :edit_password
   patch "password", to: "passwords#update"
 
