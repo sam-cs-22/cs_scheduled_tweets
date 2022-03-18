@@ -1,0 +1,38 @@
+.mb-3.card.card-body
+  table.table
+    thead
+      tr
+        th[scope="col"]
+          | Name
+        th[scope="col"]
+          | Description
+        th[scope="col"]
+          | Example
+        th[scope="col"]
+          | No of Pages
+        th[scope="col"]
+          | No of Entity Pages
+        th[scope="col"]
+          | Actions
+    tbody
+      tr
+        th[scope="row", style="width: 15%"]
+          = ui_element.element_name
+        td[style="width: 15%"]
+          =ui_element.element_discription
+        td[style="width: 15%"]
+          - unless ui_element.element_avatar.blank?
+            = image_tag ui_element.element_avatar.url, class: "img-thumbnail"
+          - else 
+            = image_tag "http://placehold.jp/50x50.png", class: "img-thumbnail"
+        td[style="width: 15%"]
+          span.badge.rounded-pill.bg-dark
+            = ui_element.module_composition_details.where('module_entity_page_id IS NULL').size
+        td[style="width: 15%"]
+          span.badge.rounded-pill.bg-dark
+            = ui_element.module_composition_details.where('module_entity_page_id IS NOT NULL').size
+        td[style="width: 15%"]
+          = link_to "Edit Element", edit_ui_element_path(ui_element), class: 'btn btn-primary me-3'
+          = link_to "View Inventory", ui_element_path(ui_element), class: 'btn btn-secondary'
+          
+

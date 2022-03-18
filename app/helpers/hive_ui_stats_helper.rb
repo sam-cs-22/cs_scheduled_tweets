@@ -1,0 +1,2 @@
+module HiveUiStatsHelper
+end

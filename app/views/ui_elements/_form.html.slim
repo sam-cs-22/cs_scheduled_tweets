@@ -1,0 +1,17 @@
+= form_with model: ui_element do |form|
+  = render "shared/form_errors", form: form
+  .mb-3
+    = form.label :ui_element_category_id
+    = form.collection_select :ui_element_category_id, UiElementCategory.all, :id, :category_name, {}, { class: "form-control" }
+  .mb-3
+    = form.label :element_name
+    = form.text_field :element_name, class: "form-control"
+  .mb-3
+    = form.label :element_discription
+    = form.text_area :element_discription, class: "form-control"
+  .mb-3
+    = form.label :element_avatar
+    = form.file_field :element_avatar, class: "form-control"
+  = form.button "Create", class: "btn btn-primary"
+  - if form.object.persisted?
+    =link_to "Delete", ui_element, method: :delete, data: { confirm: "Really?" }, class: "btn btn-outline-danger"

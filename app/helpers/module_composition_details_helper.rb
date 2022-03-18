@@ -1,0 +1,2 @@
+module ModuleCompositionDetailsHelper
+end

@@ -1,0 +1,28 @@
+.d-flex.justify-content-between.align-items-center
+  = render "shared/search"
+  h4
+    | Search Results
+  = link_to "Back", module_pages_path, class: "btn btn-primary"
+.row
+  - unless @ui_elements.blank?
+    .col
+      h3 UI Elements
+      ul.list-group
+        -@ui_elements.each do |ui_element|
+          li.list-group-item
+            = link_to ui_element.element_name, ui_element_path(ui_element)
+  - unless @module_pages.blank?
+    .col
+      h3 Pages
+      ul.list-group
+        -@module_pages.each do |module_page|
+          li.list-group-item
+            = link_to module_page.module_page_name, module_page_path(module_page)
+  - unless @module_entity_pages.blank?
+    .col
+      h3 Entity Pages
+      ul.list-group
+        -@module_entity_pages.each do |module_entity_page|
+          li.list-group-item
+            = link_to module_entity_page.module_entity_page_name, module_entity_page_path(module_entity_page)
+      

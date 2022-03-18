@@ -1,0 +1,7 @@
+.d-flex.justify-content-between.align-items-center
+  h4
+    | Component Categories (UI Interface Element Categories)
+
+  = link_to "Add New UI Element Category", new_ui_element_category_path, class: "btn btn-primary"
+.mb-3.card.card-body
+  = render @ui_element_categories

@@ -1,0 +1,14 @@
+= form_with model: module_composition_detail do |form|
+  = render "shared/form_errors", form: form
+  .mb-3
+    = form.label :module_page
+    = form.collection_select :module_page_id, ModulePage.all, :id, :module_page_name, {:prompt => "--select Module Page--"}, { class: "form-control" }
+  .mb-3
+    = form.label :module_entity_page
+    = form.collection_select :module_entity_page_id, ModuleEntityPage.all, :id, :module_entity_page_name, {:prompt => "--select Module Entity Page--"}, { class: "form-control", prompt: "Select" }
+  .mb-3
+    = form.label :ui_element
+    = form.collection_select :ui_element_id, UiElement.all, :id, :element_name, {:prompt => "--select UI Element--"}, { class: "form-control" }
+  = form.button button_label(module_composition_detail), class: "btn btn-primary"
+  - if form.object.persisted?
+    =link_to "Delete", module_composition_detail, method: :delete, data: { confirm: "Really?" }, class: "btn btn-outline-danger"

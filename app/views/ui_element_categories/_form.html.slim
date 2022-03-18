@@ -1,0 +1,8 @@
+= form_with model: ui_element_category do |form|
+  = render "shared/form_errors", form: form
+  .mb-3
+    = form.label :category_name
+    = form.text_field :category_name, class: "form-control"
+  = form.button button_label(ui_element_category), class: "btn btn-primary"
+  - if form.object.persisted?
+    =link_to "Delete", ui_element_category, method: :delete, data: { confirm: "Really?" }, class: "btn btn-outline-danger"

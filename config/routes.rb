@@ -21,9 +21,20 @@ Rails.application.routes.draw do
   patch "password/reset/edit", to: "password_resets#update"
 
   get "/auth/twitter/callback", to: "omniauth_callbacks#twitter"
+  get "/search", to: "main#search"
 
   resources :twitter_accounts
   resources :tweets
+  resources :ui_elements
+  resources :ui_element_categories
+  resources :module_pages do
+    collection do
+      get 'clone_ae_page'
+      post 'save_cloned_ae'
+    end
+  end
+  resources :module_entity_pages
+  resources :module_composition_details
 
   root to: "main#index"
 end

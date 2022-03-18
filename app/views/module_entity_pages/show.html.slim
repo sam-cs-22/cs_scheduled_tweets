@@ -1,0 +1,20 @@
+.d-flex.justify-content-between.align-items-center
+  h4
+    = @module_entity_page.module_entity_page_name
+  = link_to "Back", module_entity_pages_path, class: "btn btn-primary"
+.row
+  .col
+    b
+      =@module_entity_page.module_entity_page_name
+    p
+      -unless @module_entity_page.page_avatar.blank?
+        = image_tag @module_entity_page.page_avatar.url, class: "img-thumbnail", size: "1000x600"
+      - else 
+        = image_tag "http://placehold.jp/800x500.png", class: "img-thumbnail"
+  .col
+    h3 UI Elements
+    ul.list-group
+      -@module_entity_page.ui_elements.each do |ui_element|
+        li.list-group-item
+          = link_to ui_element.element_name, ui_element_path(ui_element)
+      

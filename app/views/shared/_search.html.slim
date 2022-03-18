@@ -1,0 +1,7 @@
+.d-flex.justify-content-between.align-items-center
+  h4.me-3
+  | Search
+  =form_tag(search_path, method: "get") do
+    .input-group.me-3
+      = search_field_tag :search, params[:search], placeholder: "pages, entity pages, components", class: 'form-control ms-3 col-lg-2'
+      = button_tag "Search", class: 'btn btn-dark'

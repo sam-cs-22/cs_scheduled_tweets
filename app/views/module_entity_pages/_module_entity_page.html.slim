@@ -1,0 +1,46 @@
+.mb-3.card.card-body
+  table.table
+    thead
+      tr
+        th[scope="col"]
+          | Entity Page Name
+        / th[scope="col"]
+        /   | Master Pages
+        th[scope="col"]
+          | Source URL
+        th[scope="col"]
+          | Page Screenshot
+        th[scope="col"]
+          | No of Components
+        
+        th[scope="col"]
+          | Type
+        th[scope="col"]
+          | Actions
+
+    tbody
+      tr
+        th[scope="row"]
+          = module_entity_page.module_entity_page_name
+        / td
+        /   = module_entity_page.module_pages.module_page_name
+        td
+          = link_to module_entity_page.source_url, module_entity_page.source_url
+        td
+          - unless module_entity_page.page_avatar.blank?
+            = image_tag module_entity_page.page_avatar.url, class: "img-thumbnail", size: "100x100"
+          - else 
+            = image_tag "http://placehold.jp/50x50.png", class: "img-thumbnail"
+        td
+          span.badge.rounded-pill.bg-dark
+            = module_entity_page.module_composition_details.where('module_entity_page_id IS NOT NULL').size
+        
+        td
+          span.badge.bg-success
+            = module_entity_page.page_type
+        td
+          / = link_to "Add Composition Details", new_module_composition_detail_path(module_entity_page)
+          = link_to "Edit Entity Page", edit_module_entity_page_path(module_entity_page), class: 'btn btn-primary me-3'
+          = link_to "Delete", module_entity_page_path(module_entity_page), method: :delete, class: 'btn btn-danger me-3'
+          = link_to "View Composition", module_entity_page_path(module_entity_page), class: 'btn btn-secondary'  
+  

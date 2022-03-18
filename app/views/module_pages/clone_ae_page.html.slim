@@ -1,0 +1,12 @@
+= form_with model: @module_entity_page, url: save_cloned_ae_module_pages_path, method: :post do |form|
+  = render "shared/form_errors", form: form
+  .mb-3
+    = form.hidden_field :module_page_id, value: @module_page&.id
+  .mb-3
+    / = form.label :module_entity_page_name
+    / = form.collection_select :module_entity_page_id, ModuleEntityPage.all, :id, :module_entity_page_name, {}, { class: "form-control" }
+    = form.label :module_entity_page_name
+    = form.select :module_entity_page_name, ModuleEntityPage.all.pluck(:module_entity_page_name).uniq
+  = form.button button_label(@module_entity_page), class: "btn btn-primary"
+  - if form.object.persisted?
+    =link_to "Delete", module_entity_page, method: :delete, data: { confirm: "Really?" }, class: "btn btn-outline-danger"
