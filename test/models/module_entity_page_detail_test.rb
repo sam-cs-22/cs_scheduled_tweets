@@ -1,6 +1,6 @@
 require "test_helper"
 
-class HiveUiStatsControllerTest < ActionDispatch::IntegrationTest
+class ModuleEntityPageDetailTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

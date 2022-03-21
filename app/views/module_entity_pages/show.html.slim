@@ -17,4 +17,9 @@
       -@module_entity_page.ui_elements.each do |ui_element|
         li.list-group-item
           = link_to ui_element.element_name, ui_element_path(ui_element)
+    h3.mt-3 Master Pages
+    ul.list-group
+      -@module_entity_page.module_entity_page_details.collect(&:module_page).each do |page|
+        li.list-group-item
+          = link_to page.module_page_name, module_page_path(page)
       
