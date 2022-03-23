@@ -10,4 +10,10 @@ class ModulePage < ApplicationRecord
     modal: 1,
     popup: 2
   }, _prefix: true
+  validates :module_page_name, presence: true
+  validates :navigation_header, presence: true
+  validates :source_url, presence: true
+  validates :page_type, presence: true
+  validates :page_avatar, presence: true
+  validates :ui_elements, presence: true
 end
