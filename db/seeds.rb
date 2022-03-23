@@ -32,8 +32,10 @@ input_controls = {
   "Date and time picker" => "This jquery plugins which are widely used for create calendar and date time pickers interfaces"
 }
 input_controls.each do |key, value|
+  puts key
+  puts value
   UiElement.find_or_create_by(element_name: key, element_discription: value, ui_element_category_id: UiElementCategory.first.id)
-end
+end;0
 
 
 
