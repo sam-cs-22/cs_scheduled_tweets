@@ -15,5 +15,5 @@ class ModulePage < ApplicationRecord
   validates :source_url, presence: true
   validates :page_type, presence: true
   validates :page_avatar, presence: true
-  validates :ui_elements, presence: true
+  validates :module_composition_details, presence: true
 end

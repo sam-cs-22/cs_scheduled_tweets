@@ -2,12 +2,12 @@
 # yarn lockfile v1
 
 
-"@appland/appmap@^3.18.3":
-  version "3.18.3"
-  resolved "https://registry.npmjs.org/@appland/appmap/-/appmap-3.18.3.tgz"
-  integrity sha512-f+YaAZUwrCno8WVjiPr7eUa58Red2nG/YHyAk4XuPfDy73iQsQkP3CJY2eOWvYgfHP2299wMeWbXy8wNYx9iWQ==
+"@appland/appmap@^3.19.0":
+  version "3.19.0"
+  resolved "https://registry.yarnpkg.com/@appland/appmap/-/appmap-3.19.0.tgz#9ef7df3b42b9b95dad2401220ccde20a8ecaa63d"
+  integrity sha512-XEZoxoKwbRcHpP6qkV/15riqFuySEPBXTBpjphEgCQ+gvn5zvfchc1J13j+/Prikv9NLVIxQ/PUFIIHSgIVblQ==
   dependencies:
-    "@appland/components" "1.23.0"
+    "@appland/components" "1.24.1"
     "@appland/diagrams" "1.5.1"
     "@appland/models" "^1.14.1"
     "@sidvind/better-ajv-errors" "^0.9.1"
@@ -40,10 +40,10 @@
     w3c-xmlserializer "^2.0.0"
     yargs "^17.1.1"
 
-"@appland/components@1.23.0":
-  version "1.23.0"
-  resolved "https://registry.yarnpkg.com/@appland/components/-/components-1.23.0.tgz#3febc446aea8fee76e1a44db8b4fd159e55ff1c8"
-  integrity sha512-GkuEj7vezotKFZBKsMcIYcImnwyPRSxWQxyO1NcZRYJBuyi1PBefRhWd6bQI821kU6iqcbIVGAYV59nrevvHrg==
+"@appland/components@1.24.1":
+  version "1.24.1"
+  resolved "https://registry.yarnpkg.com/@appland/components/-/components-1.24.1.tgz#425a224d4eae5ff5888e38d9436eddbbb7e8f128"
+  integrity sha512-4s+ug5p5iW0wXKgqxEiS0+d089h2zoY8erEeeOzdJEskOEGhVorJJEKQm07YQ6OA3pITuhm2QDIjBWHX3/MbGw==
   dependencies:
     "@appland/diagrams" "^1.5.1"
     "@appland/models" "^1.9.0"

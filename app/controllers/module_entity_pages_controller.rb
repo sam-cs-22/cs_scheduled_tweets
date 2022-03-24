@@ -39,7 +39,7 @@ class ModuleEntityPagesController < ApplicationController
   private
 
   def module_entity_page_params
-    params.require(:module_entity_page).permit(:module_page_id, :module_entity_page_name, :source_url, :page_avatar, :page_type, module_composition_details_attributes:[:id, :ui_element_id, :_destroy])
+    params.require(:module_entity_page).permit(:module_entity_page_name, :source_url, :page_avatar, :page_type, module_composition_details_attributes:[:id, :ui_element_id, :_destroy])
   end
 
   def set_module_entity_page
