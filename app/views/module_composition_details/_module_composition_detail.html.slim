@@ -1,0 +1,20 @@
+.mb-3.card.card-body
+  b
+    ="Module Page:"
+  = module_composition_detail.module_page.module_page_name
+  b
+    ="Module Entity Page:"
+  -if module_composition_detail.module_entity_page.blank?
+    = "No Entity Page"
+  -else
+    = module_composition_detail&.module_entity_page&.module_entity_page_name
+  .me-4
+    b
+      ="UI Element"
+    .me-4
+      =module_composition_detail.ui_element.element_name
+      - unless module_composition_detail.ui_element.element_avatar.blank?
+        =image_tag module_composition_detail.ui_element.element_avatar.url, class: "erounded-circl"
+  .me-4
+    =image_tag module_composition_detail.module_page.page_avatar.url, class: "rounded-circle", size:"100x100"
+  = link_to "Edit Module Composition Detail", edit_module_composition_detail_path(module_composition_detail)

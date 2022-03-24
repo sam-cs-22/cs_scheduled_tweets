@@ -1,0 +1,52 @@
+.mb-3.card.card-body
+  table.table
+    thead
+      tr
+        th[scope="col"]
+          | Page Name
+        th[scope="col"]
+          | Source URL
+        th[scope="col"]
+          | Page Screenshot
+        / th[scope="col"]
+        /   | Sub-Navigation Header
+        th[scope="col"]
+          | No of Components
+        th[scope="col"]
+          | Type
+        th[scope="col"]
+          | No of Entity Pages
+        th[scope="col"]
+          | Actions
+
+    tbody
+      tr
+        th[scope="row", style="width: 15%"]
+          = module_page.module_page_name
+        td[style="width: 15%"]
+          = link_to module_page.source_url, module_page.source_url, target: "blank"
+        td[style="width: 15%"]
+          - unless module_page.page_avatar.blank?
+            = image_tag module_page.page_avatar.url, class: "img-thumbnail", size: "100x100"
+          - else 
+            = image_tag "http://placehold.jp/50x50.png", class: "img-thumbnail"
+        / td
+        /   -if module_page.navigation_header.blank? or !module_page.navigation_header?
+        /     ="No"
+        /   - else
+        /     = "Yes"
+        td[style="width: 15%"]
+          span.badge.rounded-pill.bg-dark
+            = module_page.module_composition_details.where('module_entity_page_id IS NULL').size
+        td[style="width: 15%"]
+          span.badge.bg-secondary
+            = module_page.page_type
+        td[style="width: 15%"]
+          span.badge.bg-info
+            = module_page.module_entity_page_details.size
+        td[style="width: 20%"]
+          = link_to "Add Entity Page", clone_ae_page_module_pages_path(id: module_page), class: "btn btn-info me-3 mb-3"
+          = link_to "Edit Page", edit_module_page_path(module_page), class: 'btn btn-primary me-3 mb-3'
+          = link_to "Delete", module_page_path(module_page), method: :delete, class: 'btn btn-danger me-3 mb-3'
+          = link_to "View Composition", module_page_path(module_page), class: 'btn btn-secondary'
+           

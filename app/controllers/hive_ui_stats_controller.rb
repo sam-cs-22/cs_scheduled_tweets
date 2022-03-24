@@ -1,0 +1,2 @@
+class HiveUiStatsController < ApplicationController
+end

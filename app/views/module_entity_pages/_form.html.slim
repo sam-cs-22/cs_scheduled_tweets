@@ -1,0 +1,30 @@
+= form_with model: module_entity_page do |form|
+  = render "shared/form_errors", form: form
+  .mb-3
+    / = form.label :module_page
+    / = form.collection_select :module_page_id, ModulePage.all, :id, :module_page_name, {}, { class: "form-control" }
+    / / = form.select(:module_page_ids, options_from_collection_for_select(ModulePage.all, :id, :module_page_name, {:selected => module_entity_page.module_page_ids.split(';')}), {prompt: 'select multiple'}, { :multiple => true, allow_blank: false})
+    / / / = f.select :similar_ids, options_from_collection_for_select(Object.all, :id, :name, {:selected => @object.similar_ids.split(';')}), {}, {:multiple => true, :size => 4, :name => 'object[similar_ids][]'}
+  .mb-3
+    = form.label :module_entity_page_name
+    = form.text_field :module_entity_page_name, class: "form-control"
+  .mb-3
+    = form.label :page_type
+    = form.select :page_type, ModuleEntityPage.page_types.keys.to_a
+  .mb-3
+    = form.label :source_url
+    = form.text_field :source_url, class: "form-control"
+  .mb-3
+    = form.label :page_avatar, "Page Screenshot"
+    = form.file_field :page_avatar, class: "form-control"
+  h4 Composition Details
+  #moduleCompositionDetails
+    .mb-3
+      = form.fields_for :module_composition_details do |module_composition_detail_form|
+        / = mcd.hidden_field :module_page_id, value: module_page&.id
+        = render "module_composition_detail_fields", f: module_composition_detail_form     
+      .links
+        = link_to_add_association 'Add Composition Info', form, :module_composition_details, partial: 'module_composition_detail_fields', class: "btn btn-success"
+  = form.button button_label(module_entity_page), class: "btn btn-primary"
+  - if form.object.persisted?
+    =link_to "Delete", module_entity_page, method: :delete, data: { confirm: "Really?" }, class: "btn btn-outline-danger"
