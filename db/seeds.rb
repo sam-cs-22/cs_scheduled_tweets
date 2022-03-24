@@ -94,3 +94,8 @@ editors.each do |key, value|
 end
 
 
+hive_users = %w[adalvi@cubesmart.com vrakshe@cubesmart.com gpatel@cubesmart.com rkeeley@cubesmart.com djogi@cubesmart.com rtrivedi@cubesmart.com kjagtap@cubesmart.com smallela@cubesmart.com]
+hive_users.each do |email|
+  user = User.new(email: email, password: 'test1234', password_confirmation: 'test1234')
+  user.save
+end
