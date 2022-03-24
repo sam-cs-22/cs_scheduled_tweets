@@ -1,8 +1,8 @@
 {
-  "name": "scheduled-tweets",
+  "name": "cubesmart-inventory",
   "private": true,
   "dependencies": {
-    "@appland/appmap": "^3.18.3",
+    "@appland/appmap": "^3.19.0",
     "@nathanvda/cocoon": "^1.2.14",
     "@rails/actioncable": "^6.0.0",
     "@rails/activestorage": "^6.0.0",
@@ -13,6 +13,6 @@
   },
   "version": "0.1.0",
   "devDependencies": {
-    "webpack-dev-server": "^3.11.1"
+    "webpack-dev-server": "^4.7.4"
   }
 }
