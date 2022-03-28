@@ -3,7 +3,6 @@ class UiElementsController < ApplicationController
   before_action :set_ui_element, only: [:show, :edit, :update, :destroy]
 
   def index
-    # CSMK-01
     @ui_elements = UiElement.all.order('created_at ASC')
   end
 
@@ -20,8 +19,7 @@ class UiElementsController < ApplicationController
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @ui_element.update(ui_element_params)

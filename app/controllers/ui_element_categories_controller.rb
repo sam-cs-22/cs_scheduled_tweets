@@ -3,7 +3,6 @@ class UiElementCategoriesController < ApplicationController
   before_action :set_ui_element_category, only: [:show, :edit, :update, :destroy]
 
   def index
-    # CSMK-01
     @ui_element_categories = UiElementCategory.all
   end
 
@@ -20,8 +19,7 @@ class UiElementCategoriesController < ApplicationController
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @ui_element_category.update(ui_element_params)

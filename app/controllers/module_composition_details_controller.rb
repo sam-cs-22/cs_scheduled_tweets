@@ -3,7 +3,6 @@ class ModuleCompositionDetailsController < ApplicationController
   before_action :module_composition_detail, only: [:show, :edit, :update, :destroy]
 
   def index
-    # CSMK-01
     @module_composition_details = ModuleCompositionDetail.all
   end
 
@@ -20,8 +19,7 @@ class ModuleCompositionDetailsController < ApplicationController
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @module_composition_detail.update(module_composition_detail_params)
