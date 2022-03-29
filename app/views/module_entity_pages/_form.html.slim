@@ -17,6 +17,10 @@
   .mb-3
     = form.label :page_avatar, "Page Screenshot"
     = form.file_field :page_avatar, class: "form-control"
+    - unless module_entity_page.page_avatar.blank?
+      = image_tag module_entity_page.page_avatar.url, class: "img-thumbnail", size: "100x100"
+    - else 
+      = image_tag "http://placehold.jp/50x50.png", class: "img-thumbnail"
   h4 Composition Details
   #moduleCompositionDetails
     .mb-3
