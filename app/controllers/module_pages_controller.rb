@@ -46,14 +46,19 @@ class ModulePagesController < ApplicationController
   end
 
   def save_cloned_ae
+    byebug
     @module_page = ModulePage.find(params[:module_page][:module_page_id])
     current_entities = @module_page.module_entity_page_details.pluck(:module_entity_page_id)
     if current_entities.include?(module_entity_page_detail_params[:module_entity_page_id].to_i)
       redirect_to clone_ae_page_module_pages_path(id: @module_page), alert: "Page already added"
     else
-      @module_page.module_entity_page_details.build(module_entity_page_detail_params)
-      @module_page.save
-      redirect_to module_pages_path, notice: "Entity page added"
+      entity_page = ModuleEntityPage.where(id: module_entity_page_detail_params[:module_entity_page_id].to_i).first
+      if entity_page.present?
+        @module_page.module_entity_pages << entity_page
+        redirect_to module_pages_path, notice: "Entity page added"
+      else 
+        redirect_to module_pages_path, notice: "Something went wrong"
+      end
     end
     
     # byebug
