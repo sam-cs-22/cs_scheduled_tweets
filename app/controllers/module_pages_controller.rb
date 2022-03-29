@@ -46,7 +46,6 @@ class ModulePagesController < ApplicationController
   end
 
   def save_cloned_ae
-    byebug
     @module_page = ModulePage.find(params[:module_page][:module_page_id])
     current_entities = @module_page.module_entity_page_details.pluck(:module_entity_page_id)
     if current_entities.include?(module_entity_page_detail_params[:module_entity_page_id].to_i)
