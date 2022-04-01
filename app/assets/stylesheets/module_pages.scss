@@ -1,3 +1,18 @@
 // Place all the styles related to the module_pages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+
+input.error {
+	border: 6px solid red;
+}
+label.error {
+	font-weight: bold;
+	color: red;
+	padding-left: 10px;
+}
+input.valid {
+	font-weight: bold;
+	font-size: 200%;
+	color: green;
+}

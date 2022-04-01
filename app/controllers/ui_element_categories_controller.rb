@@ -3,7 +3,7 @@ class UiElementCategoriesController < ApplicationController
   before_action :set_ui_element_category, only: [:show, :edit, :update, :destroy]
 
   def index
-    @ui_element_categories = UiElementCategory.all
+    @ui_element_categories = UiElementCategory.includes(:ui_elements).all.order('created_at ASC')
   end
 
   def new
@@ -13,7 +13,7 @@ class UiElementCategoriesController < ApplicationController
   def create
     @ui_element_category = UiElementCategory.new(ui_element_params)
     if @ui_element_category.save
-      redirect_to ui_element_categories_path, notice: "UiElementCategory was scheduled successfully"
+      redirect_to ui_element_categories_path, notice: "UiElementCategory was created successfully"
     else
       render :new
     end
@@ -31,7 +31,7 @@ class UiElementCategoriesController < ApplicationController
 
   def destroy
     @ui_element_category.destroy
-    redirect_to ui_element_categories_path, notice: "UiElementCategory was unscheduled"
+    redirect_to ui_element_categories_path, notice: "UiElementCategory was deleted"
   end
 
   private

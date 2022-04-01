@@ -1,0 +1,8 @@
+.nested-fields
+  = f.label :name, "Test case Name"
+  = f.text_field :name, class: 'form-control'
+  = f.label :source_url, "Source URL"
+  = f.text_field :source_url, class: 'form-control'
+  = link_to_remove_association f, class: "btn btn-danger mt-3" do
+    i.bi.bi-trash3-fill
+  p

@@ -10,6 +10,9 @@
     = form.label :element_discription
     = form.text_area :element_discription, class: "form-control"
   .mb-3
+    = form.label :usage_details
+    = form.text_field :usage_details, class: "form-control", placeholder: 'Boostrap URL for usage instructions'
+  .mb-3
     = form.label :element_avatar
     = form.file_field :element_avatar, class: "form-control"
   = form.button "Create", class: "btn btn-primary"

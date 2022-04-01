@@ -31,3 +31,52 @@
 
 en:
   hello: "Hello world"
+  activerecord:
+    models: 
+      module_page: "Master Page"
+      module_fa: "Functional Artifact"
+      module_tc: "Test Case"
+    attributes:
+      module_page:
+        module_page_name: "Page Name"
+        source_url: "Source URL"
+        page_avatar: "Screenshot"
+      module_fas:
+        name: "Name"
+        source_url: "Source URL"
+      module_page:
+        module_fas: 
+          name: "Name"
+          source_url: "Source URL"
+      module_page/module_tcs:
+        name: "Name"
+        source_url: "Source URL"
+    errors:
+      models:
+        module_pages:
+          attributes:
+            module_page_name:
+              blank: "is required"
+            source_url:
+              blank: "is required"
+            page_avatar:
+              blank: "is required"
+        module_fas:
+          attributes:
+            name:
+              blank: "is required"
+            source_url: 
+              blank: "is required"
+        module_page:
+          module_fas:
+            attributes:
+              name:
+                blank: "is required"
+              source_url: 
+                blank: "is required"
+        module_page/module_tcs:
+            attributes:
+              name:
+                blank: "is required"
+              source_url: 
+                blank: "is required"

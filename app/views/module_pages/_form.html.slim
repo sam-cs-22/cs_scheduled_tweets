@@ -1,4 +1,4 @@
-= form_with model: module_page do |form|
+= form_with model: module_page, id: "new_master_page" do |form|
   = render "shared/form_errors", form: form
   .mb-3
     = form.label :module_page_name
@@ -15,15 +15,38 @@
   .mb-3
     = form.label :page_avatar, "Page Screenshot"
     = form.file_field :page_avatar, class: "form-control"
+    - unless module_page.page_avatar.blank?
+      = image_tag module_page.page_avatar.url, class: "img-thumbnail", size: "100x100"
+    - else 
+      = image_tag "http://placehold.jp/50x50.png", class: "img-thumbnail"
   h4 Composition Details
-  #moduleCompositionDetails
-    .mb-3
-      = form.fields_for :module_composition_details do |module_composition_detail_form|
-        / = mcd.hidden_field :module_page_id, value: module_page&.id
-        = render "module_composition_detail_fields", f: module_composition_detail_form     
-      .links
-        = link_to_add_association 'Add Composition Info', form, :module_composition_details, partial: 'module_composition_detail_fields', class: "btn btn-success"
-  = form.button button_label(module_page), class: "btn btn-primary me-3"
-  - if form.object.persisted?
-    =link_to "Delete", module_page, method: :delete, data: { confirm: "Really?" }, class: "btn btn-outline-danger"
-  / = link_to "Add Composition Details", new_module_composition_detail_path(module_page),class: "btn btn-outline-secondary"
+  = form.collection_check_boxes(:ui_element_ids, UiElement.all, :id, :element_name) do |ui_element|
+    p
+      = ui_element.label(class: "form-check-label p-2" ) { ui_element.object.element_name}
+      = ui_element.label { ui_element.check_box class: 'form-check-input'}
+      
+  / #moduleCompositionDetails
+  /   .mb-3
+  /     = form.fields_for :module_composition_details do |module_composition_detail_form|
+  /       / = mcd.hidden_field :module_page_id, value: module_page&.id
+  /       = render "module_composition_detail_fields", f: module_composition_detail_form     
+  /     .links
+  /       = link_to_add_association 'Add Composition Info', form, :module_composition_details, partial: 'module_composition_detail_fields', class: "btn btn-success"
+  p
+    .mt-10
+      = form.button button_label(module_page), class: "btn btn-primary me-3"
+      - if form.object.persisted?
+        =link_to "Delete", module_page, method: :delete, data: { confirm: "Really?" }, class: "btn btn-outline-danger"
+      / = link_to "Add Composition Details", new_module_composition_detail_path(module_page),class: "btn btn-outline-secondary"
+
+
+
+javascript: 
+  $("#new_master_page").validate({
+    rules: {
+      "module_page[ui_element_ids][]": "required",
+    },
+    messages: {
+      "module_page[ui_element_ids][]" : "Please select at least once element"
+    }
+  });

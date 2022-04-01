@@ -13,7 +13,7 @@ class ModuleCompositionDetailsController < ApplicationController
   def create
     @module_composition_detail = ModuleCompositionDetail.new(module_composition_detail_params)
     if @module_composition_detail.save
-      redirect_to module_composition_details_path, notice: "ModuleCompositionDetail was scheduled successfully"
+      redirect_to module_composition_details_path, notice: "ModuleCompositionDetail was created successfully"
     else
       render :new
     end
@@ -31,7 +31,7 @@ class ModuleCompositionDetailsController < ApplicationController
 
   def destroy
     @module_composition_detail.destroy
-    redirect_to module_composition_details_path, notice: "ModuleCompositionDetail was unscheduled"
+    redirect_to module_composition_details_path, notice: "ModuleCompositionDetail was deleted"
   end
 
   private

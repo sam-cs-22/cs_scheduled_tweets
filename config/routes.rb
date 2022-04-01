@@ -31,6 +31,10 @@ Rails.application.routes.draw do
     collection do
       get 'clone_ae_page'
       post 'save_cloned_ae'
+      get 'add_fas'
+      get 'add_tcs'
+      post 'save_fas'
+      post 'save_tcs'
     end
   end
   resources :module_entity_pages

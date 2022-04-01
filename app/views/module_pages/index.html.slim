@@ -1,7 +1,8 @@
 .d-flex.justify-content-between.align-items-center
-  = render "shared/search"
+  .mt-3.mb-3
+    = render "shared/search"
   h4
     | Page Master (Module Pages)
 
-  = link_to "Add Master Page", new_module_page_path, class: "btn btn-primary"
+  = link_to "Add Master Page", new_module_page_path, class: "btn btn-primary mt-3 mb-3"
 = render @module_pages

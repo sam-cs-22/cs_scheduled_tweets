@@ -6,7 +6,7 @@ class UiElement < ApplicationRecord
    belongs_to :ui_element_category
    validates :element_name, presence: true
    validates :element_discription, presence: true
-   #validates :usage_details, presence: true
+   validates :usage_details, presence: true
    validates :ui_element_category, presence: true
-   #validates :element_avatar, presence: true
+   validates :element_avatar, presence: true
 end

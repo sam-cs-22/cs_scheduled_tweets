@@ -12,13 +12,18 @@
         = image_tag "http://placehold.jp/500x500.png", class: "img-thumbnail"
   .col
     h3 UI Elements
-    ul.list-group
-      -@module_page.ui_elements.each do |ui_element|
-        li.list-group-item
-          = link_to ui_element.element_name, ui_element_path(ui_element)
+    - unless @module_page.ui_elements.blank?
+      ul.list-group
+        -@module_page.ui_elements.each do |ui_element|
+          li.list-group-item
+            = link_to ui_element.element_name, ui_element_path(ui_element)
+    - else
+      = 'No UI Inventory information is available at the moment'
     h3.mt-3 Entity Pages
-    ul.list-group
-      -@module_page.module_entity_page_details.collect(&:module_entity_page).each do |entity_page|
-        li.list-group-item
-          = link_to entity_page.module_entity_page_name, module_entity_page_path(entity_page)
-      
+    - unless @module_page.module_entity_page_details.blank?
+      ul.list-group
+        -@module_page.module_entity_page_details.collect(&:module_entity_page).each do |entity_page|
+          li.list-group-item
+            = link_to entity_page.module_entity_page_name, module_entity_page_path(entity_page)
+    - else 
+      = "No information is available at the moment."

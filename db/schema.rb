@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_20_090448) do
+ActiveRecord::Schema.define(version: 2022_03_28_145911) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,17 @@ ActiveRecord::Schema.define(version: 2022_03_20_090448) do
     t.index ["module_page_id"], name: "index_module_entity_pages_on_module_page_id"
   end
 
+  create_table "module_fas", force: :cascade do |t|
+    t.string "file_avatar"
+    t.string "name"
+    t.string "source_url"
+    t.string "source_type"
+    t.bigint "module_page_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["module_page_id"], name: "index_module_fas_on_module_page_id"
+  end
+
   create_table "module_pages", force: :cascade do |t|
     t.string "module_page_name"
     t.boolean "navigation_header"
@@ -54,6 +65,17 @@ ActiveRecord::Schema.define(version: 2022_03_20_090448) do
     t.string "page_avatar"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "module_tcs", force: :cascade do |t|
+    t.string "file_avatar"
+    t.string "name"
+    t.string "source_url"
+    t.string "source_type"
+    t.bigint "module_page_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["module_page_id"], name: "index_module_tcs_on_module_page_id"
   end
 
   create_table "tweets", force: :cascade do |t|

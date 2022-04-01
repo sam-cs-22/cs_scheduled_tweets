@@ -1,0 +1,2 @@
+class ModuleFasController < ApplicationController
+end

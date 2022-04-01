@@ -13,7 +13,7 @@ class UiElementsController < ApplicationController
   def create
     @ui_element = UiElement.new(ui_element_params)
     if @ui_element.save
-      redirect_to ui_elements_path, notice: "UiElement was scheduled successfully"
+      redirect_to ui_elements_path, notice: "UiElement was created successfully"
     else
       render :new
     end
@@ -31,7 +31,7 @@ class UiElementsController < ApplicationController
 
   def destroy
     @ui_element.destroy
-    redirect_to ui_elements_path, notice: "UiElement was unscheduled"
+    redirect_to ui_elements_path, notice: "UiElement was deleted"
   end
 
   private

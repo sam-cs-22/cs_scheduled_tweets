@@ -1,0 +1,27 @@
+.modal.fade[data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" id="staticBackdrop_tc_#{module_page&.id}"]
+  .modal-dialog.modal-dialog-scrollable
+    .modal-content
+      .modal-header
+        h5#staticBackdropLabel.modal-title
+          | Add / Remove Test cases to 
+          = module_page.module_page_name
+          - module_page.module_tcs.build
+        button.btn-close[type="button" data-bs-dismiss="modal" aria-label="Close"]
+      .modal-body
+        = form_with model: module_page, url: save_tcs_module_pages_path, method: :post, local: false, remote: true do |form|
+          = render "mp_errors", object: module_page, errors_container: "form_errors_tc_#{module_page&.id}"
+          .mb-3
+            = form.hidden_field :id, value: module_page&.id, class: "form-control"
+          #moduleFunctionalArtifacts
+            .mb-3
+              = form.fields_for :module_tcs do |module_fas_form|
+                = render "module_tc_fields", f: module_fas_form     
+              .links
+                = link_to_add_association form, :module_tcs, partial: 'module_tc_fields', class: "btn btn-success" do
+                  i.bi.bi-plus-lg
+                    | Add More
+           
+          .modal-footer
+            = form.button class: "btn btn-primary me-3" do
+              i.bi.bi-plus-lg
+               | Add or Update

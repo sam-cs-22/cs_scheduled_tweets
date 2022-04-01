@@ -1,0 +1,6 @@
+span[id="#{errors_container}"]
+  - if object.errors.any?
+    .alert.alert-danger
+      - object.errors.full_messages.each do |message|
+        div
+          = message

@@ -1,0 +1,3 @@
+<%-if @module_page.errors.present?%>
+  $("#form_errors_tc_"+<%=@module_page&.id%>).html("<%= j render(:partial => 'mp_errors', locals: { object: @module_page, errors_container: "form_errors_tc_#{@module_page&.id}" }) %>");
+<%end%>

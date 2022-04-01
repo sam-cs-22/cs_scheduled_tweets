@@ -3,7 +3,7 @@ class ModuleEntityPagesController < ApplicationController
   before_action :set_module_entity_page, only: [:show, :edit, :update, :destroy]
 
   def index
-    @module_entity_pages = ModuleEntityPage.all
+    @module_entity_pages = ModuleEntityPage.all.order('created_at DESC')
   end
 
   def new
@@ -14,7 +14,7 @@ class ModuleEntityPagesController < ApplicationController
   def create
     @module_entity_page = ModuleEntityPage.new(module_entity_page_params)
     if @module_entity_page.save
-      redirect_to module_entity_pages_path, notice: "ModuleEntityPage was scheduled successfully"
+      redirect_to module_entity_pages_path, notice: "ModuleEntityPage was created successfully"
     else
       render :new
     end

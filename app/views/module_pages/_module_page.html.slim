@@ -44,9 +44,22 @@
         td[style="width: 15%"]
           span.badge.bg-info
             = module_page.module_entity_page_details.size
-        td[style="width: 20%"]
-          = link_to "Add Entity Page", clone_ae_page_module_pages_path(id: module_page), class: "btn btn-info me-3 mb-3"
-          = link_to "Edit Page", edit_module_page_path(module_page), class: 'btn btn-primary me-3 mb-3'
-          = link_to "Delete", module_page_path(module_page), method: :delete, class: 'btn btn-danger me-3 mb-3'
-          = link_to "View Composition", module_page_path(module_page), class: 'btn btn-secondary'
+        td[style="width: 20%"]          
+          = link_to edit_module_page_path(module_page), class: 'btn btn-primary me-2 mb-2'
+            i.bi.bi-pencil-square
+          = link_to module_page_path(module_page), method: :delete, "data-confirm": "Are you sure?", "data-method": "delete", class: 'btn btn-danger me-2 mb-2' do
+            i.bi.bi-trash3-fill
+          = link_to module_page_path(module_page), class: 'btn btn-secondary mb-2' do
+            i.bi.bi-eye
+          = link_to clone_ae_page_module_pages_path(id: module_page), class: "btn btn-info me-2 mb-2" do
+            i.bi.bi-plus-lg
+              | Add entity page
+          button.btn.btn-primary.me-2.mb-2[type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop_#{module_page&.id}"]
+            |  Add Functional Artifacts
+          = render "add_fas", module_page: module_page
+          button.btn.btn-primary.me-2.mb-2[type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop_tc_#{module_page&.id}"]
+            |  Add Test cases
+          = render "add_tcs", module_page: module_page
            
+
+
