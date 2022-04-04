@@ -7,25 +7,32 @@
         th[scope="col"]
           | Source URL
         th[scope="col"]
+          | Page Type
+        th[scope="col"]
           | Page Screenshot
         / th[scope="col"]
         /   | Sub-Navigation Header
         th[scope="col"]
           | No of Components
         th[scope="col"]
-          | Type
+          | App
         th[scope="col"]
-          | No of Entity Pages
+          | # TO other Pages
+        th[scope="col"]
+          | # FROM other pages
         th[scope="col"]
           | Actions
 
     tbody
       tr
-        th[scope="row", style="width: 15%"]
+        th[scope="row", style="width: 8%"]
           = module_page.module_page_name
-        td[style="width: 15%"]
+        td[style="width: 8%"]
           = link_to module_page.source_url, module_page.source_url, target: "blank"
-        td[style="width: 15%"]
+        td[style="width: 8%"]
+          span.badge.bg-secondary
+            = module_page.page_type
+        td[style="width: 8%"]
           - unless module_page.page_avatar.blank?
             = image_tag module_page.page_avatar.url, class: "img-thumbnail", size: "100x100"
           - else 
@@ -35,21 +42,25 @@
         /     ="No"
         /   - else
         /     = "Yes"
-        td[style="width: 15%"]
+        td[style="width: 8%"]
           span.badge.rounded-pill.bg-dark
             = module_page.module_composition_details.where('module_entity_page_id IS NULL').size
-        td[style="width: 15%"]
-          span.badge.bg-secondary
-            = module_page.page_type
-        td[style="width: 15%"]
+        
+        td[style="width: 8%"]
+          span.badge.bg-primary
+            = module_page.app_type
+        td[style="width: 8%"]
           span.badge.bg-info
-            = module_page.module_entity_page_details.size
+            = module_page.child_pages.size
+        td[style="width: 8%"]
+          span.badge.bg-success
+            =@all_child_pages[module_page&.id]
         td[style="width: 20%"]          
           = link_to edit_module_page_path(module_page), class: 'btn btn-primary me-2 mb-2'
             i.bi.bi-pencil-square
           = link_to module_page_path(module_page), method: :delete, "data-confirm": "Are you sure?", "data-method": "delete", class: 'btn btn-danger me-2 mb-2' do
             i.bi.bi-trash3-fill
-          = link_to module_page_path(module_page), class: 'btn btn-secondary mb-2' do
+          = link_to module_page_path(module_page), class: 'btn btn-secondary me-2 mb-2' do
             i.bi.bi-eye
           = link_to clone_ae_page_module_pages_path(id: module_page), class: "btn btn-info me-2 mb-2" do
             i.bi.bi-plus-lg

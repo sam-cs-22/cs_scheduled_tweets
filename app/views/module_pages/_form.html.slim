@@ -7,6 +7,9 @@
     = form.label :page_type
     = form.select :page_type, ModulePage.page_types.keys.to_a
   .mb-3
+    = form.label :app_type
+    = form.select :app_type, ModulePage.app_types.keys.to_a
+  .mb-3
     = form.label :source_url
     = form.text_field :source_url, class: "form-control"
   .mb-3
@@ -47,6 +50,6 @@ javascript:
       "module_page[ui_element_ids][]": "required",
     },
     messages: {
-      "module_page[ui_element_ids][]" : "Please select at least once element"
+      "module_page[ui_element_ids][]" : "Please select at least one element"
     }
   });

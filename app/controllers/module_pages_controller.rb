@@ -4,6 +4,7 @@ class ModulePagesController < ApplicationController
 
   def index
     @module_pages = ModulePage.all.order('created_at DESC')
+    @all_child_pages = ModuleEntityPageDetail.all.pluck(:child_page_id).tally
   end
 
   def new
@@ -53,23 +54,20 @@ class ModulePagesController < ApplicationController
 
   def clone_ae_page
     @module_page = ModulePage.find(params[:id])
-    @module_entity_page = ModuleEntityPage.new
+    module_pages_list = ModulePage.all.pluck(:id) - [@module_page.id]
+    @all_module_pages = ModulePage.where('id IN (?)', module_pages_list)
   end
 
   def save_cloned_ae
     @module_page = ModulePage.find(params[:module_page][:module_page_id])
-    current_entities = @module_page.module_entity_page_details.pluck(:module_entity_page_id)
-    if current_entities.include?(module_entity_page_detail_params[:module_entity_page_id].to_i)
-      redirect_to clone_ae_page_module_pages_path(id: @module_page), alert: "Page already added"
-    else
-      entity_page = ModuleEntityPage.where(id: module_entity_page_detail_params[:module_entity_page_id].to_i).first
-      if entity_page.present?
-        @module_page.module_entity_pages << entity_page
-        redirect_to module_pages_path, notice: "Entity page added"
-      else 
-        redirect_to module_pages_path, notice: "Something went wrong"
-      end
-    end    
+    entity_page_ids = params[:module_page][:child_page_ids].reject { |c| c.empty? }
+    @module_page.child_pages.destroy_all
+    if !entity_page_ids.empty?
+      @module_page.child_pages << ModulePage.where('id IN (?)', entity_page_ids)
+      redirect_to module_pages_path, notice: "Entity pages added"
+    else 
+      redirect_to module_pages_path, notice: "Something went wrong"
+    end 
   end
 
   def add_fas
@@ -97,7 +95,7 @@ class ModulePagesController < ApplicationController
   private
 
   def module_page_params
-    params.require(:module_page).permit(:module_page_name, :navigation_header, :source_url, :page_avatar, :page_type, :ui_element_ids, module_composition_details_attributes:[:id, :ui_element_id, :_destroy])
+    params.require(:module_page).permit(:module_page_name, :navigation_header, :source_url, :page_avatar, :page_type, :ui_element_ids, :app_type, module_composition_details_attributes:[:id, :ui_element_id, :_destroy])
   end
 
   def module_entity_page_detail_params
