@@ -1,0 +1,23 @@
+.modal.fade[data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" id="no_of_ui_components_#{module_page&.id}"]
+  .modal-dialog.modal-dialog-scrollable
+    .modal-content
+      .modal-header
+        h5#staticBackdropLabel.modal-title
+          = module_page.module_page_name
+        button.btn-close[type="button" data-bs-dismiss="modal" aria-label="Close"]
+      .modal-body
+        .row
+          .col
+            h3 UI Elements
+            - unless module_page.ui_elements.blank?
+              ul.list-group
+                -module_page.ui_elements.each do |ui_element|
+                  li.list-group-item
+                    = link_to ui_element.element_name, ui_element_path(ui_element)
+            - else
+              p
+                | No components added
+           
+        .modal-footer
+          button.btn.btn-secondary[type="button" data-bs-dismiss="modal"]
+            | Close

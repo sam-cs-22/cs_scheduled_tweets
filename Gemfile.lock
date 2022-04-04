@@ -234,6 +234,10 @@ GEM
       rake (>= 0.8.7)
       thor (~> 1.0)
     rake (13.0.3)
+    ransack (3.0.0)
+      activerecord (>= 6.0.4)
+      activesupport (>= 6.0.4)
+      i18n
     rb-fsevent (0.10.4)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
@@ -345,6 +349,7 @@ DEPENDENCIES
   pg (~> 1.1)
   puma (~> 5.3)
   rails (~> 6.1.0)
+  ransack
   sass-rails (>= 6)
   selenium-webdriver
   sidekiq (~> 6.1)

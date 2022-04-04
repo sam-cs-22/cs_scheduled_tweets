@@ -31,6 +31,6 @@ class ModulePage < ApplicationRecord
   validates :page_type, presence: true
   validates :page_avatar, presence: true
   # validates :module_composition_details, presence: true
-  self.per_page = 1
+  self.per_page = 5
   
 end

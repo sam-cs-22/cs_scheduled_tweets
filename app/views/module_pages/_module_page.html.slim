@@ -1,85 +1,56 @@
-.mb-3.card.card-body
-  table.table[id="master_pages_list"]
-    thead
-      tr
-        th[scope="col"]
-          | Page Name
-        th[scope="col"]
-          | Source URL
-        th[scope="col"]
-          | Type
-        th[scope="col"]
-          | Notes
-        th[scope="col"]
-          | App
-        th[scope="col"]
-          | Screenshot
-        / th[scope="col"]
-        /   | Sub-Navigation Header
-        th[scope="col"]
-          | # Components
-        
-        th[scope="col"]
-          | # TO other Pages
-        th[scope="col"]
-          | # FROM other pages
-        th[scope="col"]
-          | Created
-        th[scope="col"]
-          | Updated
-        th[scope="col"]
-          | Actions
-
-    tbody.sortable
-      tr
-        th[scope="row", style="width: 5%"]
-          = module_page.module_page_name
-        td[style="width: 5%"]
-          = link_to truncate(module_page.source_url, length: 50), module_page.source_url, target: "blank"
-        td[style="width: 5%"]
-          span.badge.bg-secondary
-            = module_page.page_type
-        td[style="width: 5%"]
-          =truncate(module_page&.notes, length: 80)
-        td[style="width: 5%"]
-          span.badge.bg-primary
-            = module_page.app_type
-        td[style="width: 5%"]
-          - unless module_page.page_avatar.blank?
-            = image_tag module_page.page_avatar.url, class: "img-thumbnail", size: "100x100"
-          - else 
-            = image_tag "http://placehold.jp/50x50.png", class: "img-thumbnail"
-        / td
-        /   -if module_page.navigation_header.blank? or !module_page.navigation_header?
-        /     ="No"
-        /   - else
-        /     = "Yes"
-        td[style="width: 5%"]
-          span.badge.rounded-pill.bg-dark
-            = module_page.module_composition_details.where('module_entity_page_id IS NULL').size
-        td[style="width: 5%"]
-          span.badge.bg-info
-            = module_page.child_pages.size
-        td[style="width: 5%"]
-          span.badge.bg-success
-            =@all_child_pages[module_page&.id]        
-        td[style="width: 5%"]
-          = module_page.created_at.in_time_zone('Eastern Time (US & Canada)').strftime('%d/%m/%Y %H:%M:%S')
-        td[style="width: 5%"]
-          = module_page.updated_at.in_time_zone('Eastern Time (US & Canada)').strftime('%d/%m/%Y %H:%M:%S')
-        td[style="width: 10%"]          
-          = link_to edit_module_page_path(module_page), class: 'btn btn-primary me-2 mb-2'
-            i.bi.bi-pencil-square
-          = link_to module_page_path(module_page), method: :delete, "data-confirm": "Are you sure?", "data-method": "delete", class: 'btn btn-danger me-2 mb-2' do
-            i.bi.bi-trash3-fill
-          = link_to module_page_path(module_page), class: 'btn btn-secondary me-2 mb-2' do
-            i.bi.bi-eye
-          = link_to clone_ae_page_module_pages_path(id: module_page), class: "btn btn-info me-2 mb-2" do
-            i.bi.bi-plus-lg
-              | Add entity page
-          button.btn.btn-primary.me-2.mb-2[type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop_#{module_page&.id}"]
-            |  Add Functional Artifacts
-          = render "add_fas", module_page: module_page
-          button.btn.btn-primary.me-2.mb-2[type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop_tc_#{module_page&.id}"]
-            |  Add Test cases
-          = render "add_tcs", module_page: module_page
+tr
+  th[scope="row", style="width: 5%"]
+    = module_page.module_page_name
+  td[style="width: 5%"]
+    = link_to truncate(module_page.source_url, length: 50), module_page.source_url, target: "blank"
+  td[style="width: 5%"]
+    span.badge.bg-secondary
+      = module_page.page_type
+  td[style="width: 5%"]
+    =truncate(module_page&.notes, length: 80)
+  td[style="width: 5%"]
+    span.badge.bg-primary
+      = module_page.app_type
+  td[style="width: 5%"]
+    - unless module_page.page_avatar.blank?
+      = image_tag module_page.page_avatar.url, class: "img-thumbnail", size: "100x100"
+    - else 
+      = image_tag "http://placehold.jp/50x50.png", class: "img-thumbnail"
+  / td
+  /   -if module_page.navigation_header.blank? or !module_page.navigation_header?
+  /     ="No"
+  /   - else
+  /     = "Yes"
+  td[style="width: 5%"]
+    button.btn.btn-secondary.me-2.mb-2[type="button" data-bs-toggle="modal" data-bs-target="#no_of_ui_components_#{module_page&.id}"]
+      = module_page.module_composition_details.where('module_entity_page_id IS NULL').size
+    = render "no_of_ui_components", module_page: module_page
+    
+  td[style="width: 5%"]
+    button.btn.btn-info.me-2.mb-2[type="button" data-bs-toggle="modal" data-bs-target="#no_of_child_pages_#{module_page&.id}"]
+      = module_page.child_pages.size
+    = render "entity_pages_list", module_page: module_page
+  td[style="width: 5%"]
+    button.btn.btn-success.me-2.mb-2[type="button" data-bs-toggle="modal" data-bs-target="#no_of_parent_pages_#{module_page&.id}"]
+      =@all_child_pages[module_page&.id]
+    = render "parent_pages_list", module_page: module_page        
+  td[style="width: 5%"]
+    = module_page.created_at.in_time_zone('Eastern Time (US & Canada)').strftime('%d/%m/%Y %H:%M:%S')
+  td[style="width: 5%"]
+    = module_page.updated_at.in_time_zone('Eastern Time (US & Canada)').strftime('%d/%m/%Y %H:%M:%S')
+  td[style="width: 10%"]          
+    = link_to edit_module_page_path(module_page), class: 'btn btn-primary me-2 mb-2'
+      i.bi.bi-pencil-square
+    = link_to module_page_path(module_page), method: :delete, "data-confirm": "Are you sure?", "data-method": "delete", class: 'btn btn-danger me-2 mb-2' do
+      i.bi.bi-trash3-fill
+    = link_to module_page_path(module_page), class: 'btn btn-secondary me-2 mb-2' do
+      i.bi.bi-eye
+    = link_to clone_ae_page_module_pages_path(id: module_page), class: "btn btn-info me-2 mb-2" do
+      i.bi.bi-plus-lg
+        | Add entity page
+    / button.btn.btn-primary.me-2.mb-2[type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop_#{module_page&.id}"]
+    /   |  Add Functional Artifacts
+    / = render "add_fas", module_page: module_page
+    / button.btn.btn-primary.me-2.mb-2[type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop_tc_#{module_page&.id}"]
+    /   |  Add Test cases
+    / = render "add_tcs", module_page: module_page

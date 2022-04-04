@@ -4,15 +4,21 @@ class ModulePagesController < ApplicationController
   before_action :parent_pages_tally, only: [:index, :sc_pages, :up_pages]
 
   def index
-    @module_pages = ModulePage.app_type_fms.page(params[:page]).order('created_at DESC')
+    @q = ModulePage.includes(:parent_pages, :child_pages, :ui_elements).app_type_fms.ransack(params[:q])
+    @q.sorts = 'module_page_name desc' if @q.sorts.empty?
+    @module_pages = @q.result(distinct: true).page(params[:page])
   end
 
   def sc_pages
-    @module_pages = ModulePage.app_type_sc.page(params[:page]).order('created_at DESC')
+    @q = ModulePage.includes(:parent_pages, :child_pages, :ui_elements).app_type_sc.ransack(params[:q])
+    @q.sorts = 'module_page_name desc' if @q.sorts.empty?
+    @module_pages = @q.result(distinct: true).page(params[:page])
   end
 
   def up_pages
-    @module_pages = ModulePage.app_type_up.page(params[:page]).order('created_at DESC')
+    @q = ModulePage.includes(:parent_pages, :child_pages, :ui_elements).app_type_up.ransack(params[:q])
+    @q.sorts = 'module_page_name desc' if @q.sorts.empty?
+    @module_pages = @q.result(distinct: true).page(params[:page])
   end
 
   def new

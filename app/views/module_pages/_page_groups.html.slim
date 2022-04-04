@@ -1,13 +1,10 @@
-ul.nav.justify-content-center
+ul.nav.nav-pills.justify-content-center
   li.nav-item
-    a.nav-link.active[aria-current="page" href="/module_pages"]
+    a.nav-link[aria-current="page" href="/module_pages" class="#{(action_name == 'index') ? page_group_active_tab('fms'): ''}"]
       | FMS
   li.nav-item
-    a.nav-link[href="/module_pages/up_pages"]
+    a.nav-link[href="/module_pages/up_pages", class="#{(action_name == 'up_pages') ? page_group_active_tab('up') : ''}"]
       | UP
   li.nav-item
-    a.nav-link[href="/module_pages/sc_pages"]
+    a.nav-link[href="/module_pages/sc_pages", class="#{(action_name == 'sc_pages') ? page_group_active_tab('sc'): ''}"]
       | SC
-  li.nav-item
-    a.nav-link.disabled
-      | Disabled
