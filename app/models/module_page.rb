@@ -31,16 +31,6 @@ class ModulePage < ApplicationRecord
   validates :page_type, presence: true
   validates :page_avatar, presence: true
   # validates :module_composition_details, presence: true
-
-  # validate :ui_elements_check,  on: :create
-
-  # def ui_elements_check
-  #   if params[:module_page][:ui_element_ids].blank?
-  #     errors.add(:ui_elements, "can't be in the past")
-  #   end
-  # end
-
-  
-  
+  self.per_page = 1
   
 end

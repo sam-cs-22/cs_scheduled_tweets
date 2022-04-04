@@ -1,10 +1,18 @@
 class ModulePagesController < ApplicationController
   before_action :require_user_logged_in!
   before_action :set_module_page, only: [:show, :edit, :update, :destroy, :add_fas, :add_tcs]
+  before_action :parent_pages_tally, only: [:index, :sc_pages, :up_pages]
 
   def index
-    @module_pages = ModulePage.all.order('created_at DESC')
-    @all_child_pages = ModuleEntityPageDetail.all.pluck(:child_page_id).tally
+    @module_pages = ModulePage.app_type_fms.page(params[:page]).order('created_at DESC')
+  end
+
+  def sc_pages
+    @module_pages = ModulePage.app_type_sc.page(params[:page]).order('created_at DESC')
+  end
+
+  def up_pages
+    @module_pages = ModulePage.app_type_up.page(params[:page]).order('created_at DESC')
   end
 
   def new
@@ -95,7 +103,7 @@ class ModulePagesController < ApplicationController
   private
 
   def module_page_params
-    params.require(:module_page).permit(:module_page_name, :navigation_header, :source_url, :page_avatar, :page_type, :ui_element_ids, :app_type, module_composition_details_attributes:[:id, :ui_element_id, :_destroy])
+    params.require(:module_page).permit(:module_page_name, :navigation_header, :source_url, :page_avatar, :page_type, :ui_element_ids, :app_type, :notes, module_composition_details_attributes:[:id, :ui_element_id, :_destroy])
   end
 
   def module_entity_page_detail_params
@@ -112,5 +120,9 @@ class ModulePagesController < ApplicationController
 
   def set_module_page
     @module_page = ModulePage.find(params[:id])
+  end
+
+  def parent_pages_tally
+    @all_child_pages = ModuleEntityPageDetail.all.pluck(:child_page_id).tally
   end
 end

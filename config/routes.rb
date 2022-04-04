@@ -35,6 +35,8 @@ Rails.application.routes.draw do
       get 'add_tcs'
       post 'save_fas'
       post 'save_tcs'
+      get 'up_pages'
+      get 'sc_pages'
     end
   end
   resources :module_entity_pages

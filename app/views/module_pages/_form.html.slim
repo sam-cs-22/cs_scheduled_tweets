@@ -27,6 +27,9 @@
     p
       = ui_element.label(class: "form-check-label p-2" ) { ui_element.object.element_name}
       = ui_element.label { ui_element.check_box class: 'form-check-input'}
+  .mb-3
+    = form.label :notes
+    = form.text_area :notes, class: 'form-control'
       
   / #moduleCompositionDetails
   /   .mb-3

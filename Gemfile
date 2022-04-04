@@ -67,3 +67,5 @@ gem "sidekiq", "~> 6.1"
 gem 'carrierwave', '~> 2.0'
 gem 'slim'
 gem "cocoon"
+gem 'will_paginate', '~> 3.3'
+gem 'will_paginate-bootstrap-style'

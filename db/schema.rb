@@ -63,7 +63,9 @@ ActiveRecord::Schema.define(version: 2022_04_04_113238) do
     t.string "page_avatar"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "app_type"
+    t.integer "app_type", default: 0
+    t.string "notes"
+    t.integer "sort"
   end
 
   create_table "module_tcs", force: :cascade do |t|

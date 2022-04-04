@@ -20,10 +20,10 @@
     - else
       = 'No UI Inventory information is available at the moment'
     h3.mt-3 Entity Pages
-    - unless @module_page.module_entity_page_details.blank?
+    - unless @module_page.child_pages.blank?
       ul.list-group
-        -@module_page.module_entity_page_details.collect(&:module_entity_page).each do |entity_page|
+        -@module_page.child_pages.each do |entity_page|
           li.list-group-item
-            = link_to entity_page.module_entity_page_name, module_entity_page_path(entity_page)
+            = link_to entity_page.module_page_name, module_page_path(entity_page)
     - else 
       = "No information is available at the moment."
