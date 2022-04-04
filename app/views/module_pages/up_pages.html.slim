@@ -9,39 +9,5 @@
 / = search_form_for @q do |f|
 /   = f.search_field :module_page_name, placeholder: "Search..."
 /   = f.submit "Search!"
-.mb-3.card.card-body
-  table.table[id="master_pages_list"]
-    thead
-      tr
-        th[scope="col"]
-          / | Page Name
-          = sort_link(@q, :module_page_name, "Page Name", default_order: :desc)
-        th[scope="col"]
-          | Source URL
-        th[scope="col"]
-          | Type
-        th[scope="col"]
-          | Notes
-        th[scope="col"]
-          | App
-        th[scope="col"]
-          | Screenshot
-        / th[scope="col"]
-        /   | Sub-Navigation Header
-        th[scope="col"]
-          | # Components
-        
-        th[scope="col"]
-          | # TO other Pages
-        th[scope="col"]
-          | # FROM other pages
-        th[scope="col"]
-          | Created
-        th[scope="col"]
-          | Updated
-        th[scope="col"]
-          | Actions
-
-    tbody.sortable
-      = render @module_pages
+= render 'pages_list'
 = will_paginate @module_pages, renderer: WillPaginate::ActionView::BootstrapLinkRenderer

@@ -32,7 +32,7 @@ tr
     = render "entity_pages_list", module_page: module_page
   td[style="width: 5%"]
     button.btn.btn-success.me-2.mb-2[type="button" data-bs-toggle="modal" data-bs-target="#no_of_parent_pages_#{module_page&.id}"]
-      =@all_child_pages[module_page&.id]
+      =@all_child_pages[module_page&.id] || 0
     = render "parent_pages_list", module_page: module_page        
   td[style="width: 5%"]
     = module_page.created_at.in_time_zone('Eastern Time (US & Canada)').strftime('%d/%m/%Y %H:%M:%S')

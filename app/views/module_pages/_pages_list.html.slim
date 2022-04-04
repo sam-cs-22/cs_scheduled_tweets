@@ -1,0 +1,37 @@
+.mb-3.card.card-body
+  table.table[id="master_pages_list"]
+    thead
+      tr
+        th[scope="col"]
+          / | Page Name
+          = sort_link(@q, :module_page_name, "Page Name", default_order: :desc)
+        th[scope="col"]
+          | Source URL
+        th[scope="col"]
+          / | Type
+          = sort_link(@q, :page_type, "Type", default_order: :desc)
+        th[scope="col"]
+          | Notes
+        th[scope="col"]
+          | App
+        th[scope="col"]
+          | Screenshot
+        / th[scope="col"]
+        /   | Sub-Navigation Header
+        th[scope="col"]
+          | # Components
+        
+        th[scope="col"]
+          | # TO other Pages
+        th[scope="col"]
+          | # FROM other pages
+        th[scope="col"]
+          / | Created
+          = sort_link(@q, :created_at, "Created on", default_order: :desc)
+        th[scope="col"]
+          / | Updated
+          = sort_link(@q, :updated_at, "Updated on", default_order: :desc)
+        th[scope="col"]
+          | Actions
+    tbody.sortable
+      = render @module_pages

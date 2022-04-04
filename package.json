@@ -4,8 +4,8 @@
   "dependencies": {
     "@appland/appmap": "^3.19.0",
     "@nathanvda/cocoon": "^1.2.14",
-    "@rails/actioncable": "^6.0.0",
-    "@rails/activestorage": "^6.0.0",
+    "@rails/actioncable": "^6.1.5",
+    "@rails/activestorage": "^6.1.5",
     "@rails/ujs": "^6.0.0",
     "@rails/webpacker": "5.2.1",
     "jquery": "^3.6.0",
