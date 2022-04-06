@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_04_04_190514) do
+ActiveRecord::Schema[7.0].define(version: 2022_04_04_201248) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -40,6 +40,32 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_04_190514) do
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
+  create_table "hive_module_subfunctions", force: :cascade do |t|
+    t.string "name"
+    t.string "note"
+    t.bigint "hive_module_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["hive_module_id"], name: "index_hive_module_subfunctions_on_hive_module_id"
+  end
+
+  create_table "hive_modules", force: :cascade do |t|
+    t.string "name"
+    t.string "default_landing_page"
+    t.string "note"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "hm_subfunctions", force: :cascade do |t|
+    t.bigint "hive_module_id"
+    t.bigint "hive_module_subfunction_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["hive_module_id"], name: "index_hm_subfunctions_on_hive_module_id"
+    t.index ["hive_module_subfunction_id"], name: "index_hm_subfunctions_on_hive_module_subfunction_id"
   end
 
   create_table "module_composition_details", force: :cascade do |t|
@@ -76,10 +102,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_04_190514) do
     t.string "name"
     t.string "source_url"
     t.string "source_type"
-    t.bigint "module_page_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["module_page_id"], name: "index_module_fas_on_module_page_id"
+    t.integer "hive_module_id"
+    t.string "note"
   end
 
   create_table "module_pages", force: :cascade do |t|
@@ -100,10 +126,19 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_04_190514) do
     t.string "name"
     t.string "source_url"
     t.string "source_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "hive_module_id"
+    t.string "note"
+  end
+
+  create_table "subfunction_pages", force: :cascade do |t|
+    t.bigint "hive_module_subfunction_id"
     t.bigint "module_page_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["module_page_id"], name: "index_module_tcs_on_module_page_id"
+    t.index ["hive_module_subfunction_id"], name: "index_subfunction_pages_on_hive_module_subfunction_id"
+    t.index ["module_page_id"], name: "index_subfunction_pages_on_module_page_id"
   end
 
   create_table "tweets", force: :cascade do |t|

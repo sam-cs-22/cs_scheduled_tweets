@@ -1,0 +1,22 @@
+.modal.fade[data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" id="add_subfunction_pages_#{hive_module_subfunction&.id}"]
+  .modal-dialog.modal-dialog-scrollable
+    .modal-content
+      .modal-header
+        h5#staticBackdropLabel.modal-title
+          | Add / Remove Pages to 
+          = hive_module_subfunction.name
+        button.btn-close[type="button" data-bs-dismiss="modal" aria-label="Close"]
+      .modal-body
+        = form_with model: hive_module_subfunction, url: save_pages_hive_module_subfunctions_path, method: :post, local: false, remote: true, id: "add_subfunction_pages_#{hive_module_subfunction&.id}" do |form|
+          = render "hive_module_subfunctions/hms_errors", object: hive_module_subfunction, errors_container: "hms_errors_#{hive_module_subfunction&.id}"
+          .mb-3
+            = form.hidden_field :hive_module_subfunction_id, value: hive_module_subfunction&.id
+          .mb-3
+            = form.collection_check_boxes(:module_page_ids, ModulePage.all, :id, :module_page_name) do |module_page|
+              p
+                = module_page.label(class: "form-check-label p-2" ) { module_page.object.module_page_name}
+                = module_page.label { module_page.check_box class: 'form-check-input'}
+          .modal-footer
+            = form.button class: "btn btn-primary me-3" do
+              i.bi.bi-plus-lg
+               | Add or Update

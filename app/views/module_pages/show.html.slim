@@ -10,6 +10,9 @@
         = image_tag @module_page.page_avatar.url, class: "img-thumbnail", size: "1000x600"
       - else 
         = image_tag "http://placehold.jp/500x500.png", class: "img-thumbnail"
+    p
+      h4 Notes
+      =@module_page&.notes
   .col
     h3 UI Elements
     - unless @module_page.ui_elements.blank?

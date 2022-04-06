@@ -1,0 +1,7 @@
+<%-if @hive_module_function.errors.present?%>
+  $("#hms_errors_"+<%=@hive_module_function&.id%>).html("<%= j render(:partial => 'hive_module_errors', locals: { object: @hive_module_function, errors_container: "hms_errors_#{@hive_module_function&.id}" }) %>");
+<%elsif @entity_page_ids.empty?%>
+  $("#hms_errors_"+<%=@hive_module_function&.id%>).html('');
+  $("#hms_errors_"+<%=@hive_module_function&.id%>).addClass('error_kclass');
+  $("#hms_errors_"+<%=@hive_module_function&.id%>).html('Please select at least one value');
+<%end%>

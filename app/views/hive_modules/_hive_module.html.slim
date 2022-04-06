@@ -1,0 +1,22 @@
+tr
+  th[scope="row", style="width: 5%"]
+    = hive_module.name
+  td[style="width: 5%"]
+    =truncate(hive_module&.note, length: 80)
+  td[style="width: 5%"]
+    = hive_module.created_at.in_time_zone('Eastern Time (US & Canada)').strftime('%d/%m/%Y %H:%M:%S')
+  td[style="width: 5%"]
+    = hive_module.updated_at.in_time_zone('Eastern Time (US & Canada)').strftime('%d/%m/%Y %H:%M:%S')
+  td[style="width: 10%"]
+    = link_to edit_hive_module_path(hive_module), class: 'btn btn-primary me-2 mb-2'
+      i.bi.bi-pencil-square
+    = link_to hive_module_path(hive_module), method: :delete, "data-confirm": "Are you sure?", "data-method": "delete", class: 'btn btn-danger me-2 mb-2' do
+      i.bi.bi-trash3-fill
+    = link_to hive_module_path(hive_module), class: 'btn btn-secondary me-2 mb-2' do
+      i.bi.bi-eye          
+    button.btn.btn-primary.me-2.mb-2[type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop_#{hive_module&.id}"]
+      |  Add Functional Artifacts
+    = render "add_fas", hive_module: hive_module
+    button.btn.btn-primary.me-2.mb-2[type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop_tc_#{hive_module&.id}"]
+      |  Add Test cases
+    = render "add_tcs", hive_module: hive_module

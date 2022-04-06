@@ -1,0 +1,18 @@
+.mb-3.card.card-body
+  table.table[id="master_pages_list"]
+    thead
+      tr
+        th[scope="col"]
+          = sort_link(@q, :name, "Name", default_order: :desc)
+        th[scope="col"]
+          | Notes
+        th[scope="col"]
+          / | Created
+          = sort_link(@q, :created_at, "Created on", default_order: :desc)
+        th[scope="col"]
+          / | Updated
+          = sort_link(@q, :updated_at, "Updated on", default_order: :desc)
+        th[scope="col"]
+          | Actions
+    tbody.sortable
+      = render @hive_modules

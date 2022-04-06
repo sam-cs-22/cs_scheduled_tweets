@@ -1,0 +1,9 @@
+.d-flex.justify-content-between.align-items-center
+  h4
+    | Module: 
+    =@hive_module&.name
+
+  = link_to "Add New Module", new_hive_module_path, class: "btn btn-primary mt-3 mb-3"
+  = link_to "Back", hive_modules_path, class: "btn btn-primary mt-3 mb-3"
+= render 'module_subfunctions_list'
+= will_paginate @hive_module_subfunctions, renderer: WillPaginate::ActionView::BootstrapLinkRenderer

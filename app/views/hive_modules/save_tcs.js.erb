@@ -1,0 +1,3 @@
+<%-if @hive_module.errors.present?%>
+  $("#form_errors_tc_"+<%=@hive_module&.id%>).html("<%= j render(:partial => 'hive_module_errors', locals: { object: @hive_module, errors_container: "form_errors_tc_#{@hive_module&.id}" }) %>");
+<%end%>

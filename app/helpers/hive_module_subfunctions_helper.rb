@@ -1,0 +1,2 @@
+module HiveModuleSubfunctionsHelper
+end

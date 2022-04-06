@@ -1,0 +1,22 @@
+.modal.fade[data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" id="no_of_child_pages_#{module_page&.id}"]
+  .modal-dialog.modal-dialog-scrollable
+    .modal-content
+      .modal-header
+        h5#staticBackdropLabel.modal-title
+          = module_page.module_page_name
+        button.btn-close[type="button" data-bs-dismiss="modal" aria-label="Close"]
+      .modal-body
+        .row
+          .col
+            h3.mt-3 Navigable TO other pages
+            - unless module_page.child_pages.blank?
+              ul.list-group
+                -module_page.child_pages.each do |entity_page|
+                  li.list-group-item
+                    = link_to entity_page.module_page_name, module_page_path(entity_page)
+            - else
+              p
+                | No entity pages linked
+        .modal-footer
+          button.btn.btn-secondary[type="button" data-bs-dismiss="modal"]
+            | Close

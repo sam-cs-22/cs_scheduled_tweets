@@ -3,4 +3,21 @@
     | Component Master (UI Interface Elements)
 
   = link_to "Add Interface Element", new_ui_element_path, class: "btn btn-primary"
-= render @ui_elements
+.mb-3.card.card-body
+  table.table
+    thead
+      tr
+        th[scope="col"]
+          | Name
+        th[scope="col"]
+          | Description
+        th[scope="col"]
+          | Example
+        th[scope="col"]
+          | No of Pages
+        th[scope="col"]
+          | No of Entity Pages
+        th[scope="col"]
+          | Actions
+    tbody
+      = render @ui_elements

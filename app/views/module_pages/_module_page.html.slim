@@ -6,11 +6,11 @@ tr
   td[style="width: 5%"]
     span.badge.bg-secondary
       = module_page.page_type
-  td[style="width: 5%"]
-    =truncate(module_page&.notes, length: 80)
-  td[style="width: 5%"]
-    span.badge.bg-primary
-      = module_page.app_type
+  / td[style="width: 5%"]
+  /   =truncate(module_page&.notes, length: 80)
+  / td[style="width: 5%"]
+  /   span.badge.bg-primary
+  /     = module_page.app_type
   td[style="width: 5%"]
     - unless module_page.page_avatar.blank?
       = image_tag module_page.page_avatar.url, class: "img-thumbnail", size: "100x100"
@@ -24,8 +24,7 @@ tr
   td[style="width: 5%"]
     button.btn.btn-secondary.me-2.mb-2[type="button" data-bs-toggle="modal" data-bs-target="#no_of_ui_components_#{module_page&.id}"]
       = module_page.module_composition_details.where('module_entity_page_id IS NULL').size
-    = render "no_of_ui_components", module_page: module_page
-    
+    = render "no_of_ui_components", module_page: module_page 
   td[style="width: 5%"]
     button.btn.btn-info.me-2.mb-2[type="button" data-bs-toggle="modal" data-bs-target="#no_of_child_pages_#{module_page&.id}"]
       = module_page.child_pages.size

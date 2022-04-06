@@ -1,0 +1,7 @@
+.nested-fields
+  = f.label :name, "Subfunction name"
+  = f.text_field :name, class: 'form-control'
+  = f.label :note, "Notes"
+  = f.text_area :note, class: 'form-control'
+  = link_to_remove_association "Remove Subfunction", f, class: "btn btn-danger mt-3"
+  p

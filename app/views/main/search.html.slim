@@ -4,6 +4,13 @@
     | Search Results
   = link_to "Back", module_pages_path, class: "btn btn-primary"
 .row
+  - unless @hive_modules.blank?
+    .col
+      h3 Modules
+      ul.list-group
+        -@hive_modules.each do |module_record|
+          li.list-group-item
+            = link_to module_record.name, hive_module_path(module_record)
   - unless @ui_elements.blank?
     .col
       h3 UI Elements

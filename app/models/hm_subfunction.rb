@@ -1,0 +1,2 @@
+class HmSubfunction < ApplicationRecord
+end

@@ -1,0 +1,19 @@
+tr
+  th[scope="row", style="width: 5%"]
+    = hive_module_subfunction.name
+  td[style="width: 5%"]
+    =truncate(hive_module_subfunction&.note, length: 80)
+  td[style="width: 5%"]
+    button.btn.btn-info.me-2.mb-2[type="button" data-bs-toggle="modal" data-bs-target="#no_of_module_pages_#{hive_module_subfunction&.id}"]
+      = hive_module_subfunction.module_pages.size
+    / = render "entity_pages_list", module_page: module_page
+  td[style="width: 5%"]
+    = hive_module_subfunction.created_at.in_time_zone('Eastern Time (US & Canada)').strftime('%d/%m/%Y %H:%M:%S')
+  td[style="width: 5%"]
+    = hive_module_subfunction.updated_at.in_time_zone('Eastern Time (US & Canada)').strftime('%d/%m/%Y %H:%M:%S')
+  td[style="width: 10%"]
+    = link_to hive_module_path(hive_module_subfunction), method: :delete, "data-confirm": "Are you sure?", "data-method": "delete", class: 'btn btn-danger me-2 mb-2' do
+      i.bi.bi-trash3-fill
+    button.btn.btn-primary.me-2.mb-2[type="button" data-bs-toggle="modal" data-bs-target="#add_subfunction_pages_#{hive_module_subfunction&.id}"]
+      |  Add Pages
+    = render "add_subfunction_pages", hive_module_subfunction: hive_module_subfunction

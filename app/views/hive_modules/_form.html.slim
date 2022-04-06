@@ -1,0 +1,20 @@
+= form_with model: hive_module, id: "new_hive_module" do |form|
+  = render "shared/form_errors", form: form
+  .mb-3
+    = form.label :name, 'Module Name'
+    = form.text_field :name, class: "form-control"
+  .mb-3
+    = form.label :note
+    = form.text_area :note, class: 'form-control'
+  #moduleSubfunctionDetails
+    h5 Add Module Subfunctions
+    .mb-3
+      = form.fields_for :hive_module_subfunctions do |hms|
+        = render "hive_module_subfunction_fields", f: hms     
+      .links
+        = link_to_add_association 'Add Subfunction', form, :hive_module_subfunctions, partial: 'hive_module_subfunction_fields', class: "btn btn-success"
+  p
+    .mt-10
+      = form.button button_label(hive_module), class: "btn btn-primary me-3"
+      - if form.object.persisted?
+        =link_to "Delete", hive_module, method: :delete, data: { confirm: "Really?" }, class: "btn btn-outline-danger"

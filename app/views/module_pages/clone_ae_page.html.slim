@@ -1,9 +1,10 @@
 = form_with model: @module_page, url: save_cloned_ae_module_pages_path, method: :post, id: 'add_entity_pages' do |form|
   = render "shared/form_errors", form: form
+  h3 Add / Update Linked Pages
   .mb-3
     = form.hidden_field :module_page_id, value: @module_page&.id
   .mb-3
-    = form.label :module_page_name
+    / = form.label :module_page_name
     / = form.collection_select :child_page_id, ModulePage.all, :id, :module_page_name, {}, { class: "form-control" }
     / = form.label :module_entity_page_name
     / = form.select :module_entity_page_name, ModuleEntityPage.all.pluck(:module_entity_page_name).uniq
@@ -12,9 +13,9 @@
         = module_page.label(class: "form-check-label p-2" ) { module_page.object.module_page_name}
         = module_page.label { module_page.check_box class: 'form-check-input'}
     
-  = form.button button_label(@module_page), class: "btn btn-primary"
-  - if form.object.persisted?
-    =link_to "Delete", @module_page, method: :delete, data: { confirm: "Really?" }, class: "btn btn-outline-danger"
+  = form.button 'Add / Update', class: "btn btn-primary me-3"
+  / - if form.object.persisted?
+  /   =link_to "Delete", @module_page, method: :delete, data: { confirm: "Really?" }, class: "btn btn-outline-danger"
 
 
 

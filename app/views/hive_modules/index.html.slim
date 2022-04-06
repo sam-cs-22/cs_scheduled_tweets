@@ -1,0 +1,9 @@
+.d-flex.justify-content-between.align-items-center
+  .mt-3.mb-3
+    = render "shared/search"
+  h4
+    | Modules
+
+  = link_to "Add New Module", new_hive_module_path, class: "btn btn-primary mt-3 mb-3"
+= render 'modules_list'
+= will_paginate @hive_modules, renderer: WillPaginate::ActionView::BootstrapLinkRenderer
